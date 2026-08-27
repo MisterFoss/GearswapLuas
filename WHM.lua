@@ -37,11 +37,14 @@ function precast(spell)
             equip(sets.ws.normal)
         end
 
-    else
-
-        equip(sets.precast.fastcast)
-
+    elseif spell.prefix == "/magic" then
+        if spell.name:match('Cure') or spell.name:match('Cura') then
+            equip(sets.precast.preCure)
+        else
+            equip(sets.precast.fastcast)
+        end
     end
+
 end
 
 
@@ -55,7 +58,11 @@ function midcast(spell)
         elseif spell.skill == "Enfeebling Magic" then
             equip(sets.midcast.enfeebling.MND)
         elseif spell.skill == "Enhancing Magic" then
-            equip(sets.midcast.enhancing)
+            if spell.name:match("Regen") then
+                equip(sets.midcast.enhancing.regen)
+            else
+                equip(sets.midcast.enhancing)
+            end
         elseif spell.skill == "Divine Magic" then
             equip(sets.midcast.divine)
         else
@@ -74,14 +81,11 @@ function midcast(spell)
     else 
         equip(sets.midcast.normal)
     end
-
 end
-
 
 function aftercast(spell)
     idle()
 end
-
 
 function idle()
 
