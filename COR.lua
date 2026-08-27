@@ -29,15 +29,22 @@ function precast(spell)
             equip(sets.ja[spell.name])
         end
     
+    elseif spell.type == "CorsairShot" then
+        if spell.name == "Light Shot" or spell.name == "Dark Shot" then
+            equip(sets.ja.quickDrawAcc)
+        else
+            equip(sets.ja.quickDrawDamage)
+        end
+    
     elseif spell.action_type == "Ranged Attack" then
-        equip(sets.precast.snapshot)
+        equip(sets.precast.preshot)
 
     elseif spell.type == "WeaponSkill" then
 
         if sets.ws[spell.name] then
             equip(sets.ws[spell.name])
         else
-            equip(sets.ws.str)
+            equip(sets.ws.normal)
         end
 
     else
